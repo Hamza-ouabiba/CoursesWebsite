@@ -1,4 +1,5 @@
-var ola = document.querySelector(".ll");
+var ola = document.querySelector(".content");
+var buyButton = document.querySelector('#buy');
 console.log(ola);
 const addCourseUi = (img,title,categorie,price) =>
 {
@@ -6,15 +7,9 @@ const addCourseUi = (img,title,categorie,price) =>
     let image = document.createElement('img');
     let p  = document.createElement('p');
     let span = document.createElement('span');
-    let divBut = document.createElement('div');
-    let button = document.createElement('button');
-    button.setAttribute('class','btn btn-info p-2 mb-3 w-50 mt-3');
-    button.textContent = "Enroll Now";
-    divBut.setAttribute('class','text-center');
-    divBut.appendChild(button);
     image.src = "http://localhost/emsiProjetPhp" + img;
     image.setAttribute('class','card-img');
-    div.setAttribute('class','card col-sm-12 col-lg-3 me-2 mb-2 text-center');
+    div.setAttribute('class','card col-sm-3 col-lg-3 me-2 mb-2 text-center');
     p.setAttribute('class','card-title mt-2');
     p.textContent = title;
     span.setAttribute('class','card-text');
@@ -23,7 +18,6 @@ const addCourseUi = (img,title,categorie,price) =>
     div.appendChild(image);
     div.appendChild(p);
     div.appendChild(span);
-    div.appendChild(divBut);
     ola.appendChild(div);
 }
 var xhr = new XMLHttpRequest();
@@ -44,5 +38,21 @@ xhr.onload = function() {
 };
 xhr.send();
 
+//buy an item: 
+buyButton.addEventListener('click',() => {
+    var xhr = new XMLHttpRequest();
+        xhr.open('POST','http://localhost/emsiProjetPhp/commandeCh.php');
+        xhr.send();
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // success*
+                alert(xhr.responseText);
+                // process the data
+            } else {
+                // error
+                alert("error");
+            }
+        };
+})
 
 

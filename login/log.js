@@ -6,7 +6,7 @@ $('#m-form').submit(function(event) {
     $.ajax({
     type: 'POST',
     url: 'http://localhost/emsiProjetPhp/login.php',
-    data: {
+    data: { 
         username: username,
         password: password
     },

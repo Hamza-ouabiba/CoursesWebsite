@@ -1,6 +1,5 @@
 <?php
     //connect to database : 
-    $flag = false;
     $host = "localhost";
     $username = "root";
     $dbName = "coursedb";
