@@ -7,16 +7,20 @@ signOutBtn.addEventListener('click',(e) => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 console.log('Logout successful');
-                window.location = "http://localhost/emsiProjetPhp/index.html";
+                window.location = "http://localhost/MiniProjetV2/login/index.html";
             } else {
                 console.error('Error: ' + xhr.status);
             }
         }
 };
 
+<<<<<<< HEAD:coursesUi/courseMenu.js
 
 
 xhr.open('POST', 'http://localhost/emsiProjetPhp/logout.php');
+=======
+xhr.open('POST', 'http://localhost/MiniProjetV2/logout.php');
+>>>>>>> 8f729d5bb74de2713022200015704a29069fff3d:menu/courseMenu.js
 xhr.setRequestHeader('Content-Type', 'application/xml');
 xhr.send('<request><type>logout</type></request>');
 

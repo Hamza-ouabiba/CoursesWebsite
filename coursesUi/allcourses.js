@@ -33,7 +33,7 @@ coursesMenu.addEventListener('click',(e) => {
             // userId: 
         };
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/emsiProjetPhp/addProduct.php');
+        xhr.open('POST','http://localhost/MiniProjetV2/AddingCourses/addProduct.php');
         xhr.send(JSON.stringify(data));
         xhr.onload = function() {
             if (xhr.status === 200) {
