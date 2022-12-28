@@ -164,7 +164,7 @@ const addCourseUi = (img,title,categorie,price) =>
     image.setAttribute('class','card-img');
     div.setAttribute('class','card col-sm-12 col-lg-3 me-2 mb-2 text-center');
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/emsiProjetPhp/retrieveCourse.php");
+    xhr.open("GET", "http://localhost/MiniProjetV2/retrieveCourse.php");
     xhr.onload = function() {
         if (xhr.status === 200) {
             // success

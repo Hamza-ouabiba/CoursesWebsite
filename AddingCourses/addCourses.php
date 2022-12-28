@@ -1,7 +1,7 @@
 <?php
     $host = "localhost";
     $username = "root";
-    $dbName = "coursedb";
+    $dbName = "courses";
     $mysqli = mysqli_connect($host,$username,'',$dbName);
     $data = json_decode(file_get_contents("php://input"));
     // $query = "INSERT INTO course(title, category,image,price) VALUES ('" . $data->title . "', '" . $data->category . "', '" . $data->image . "', '" . $data->price . "')";

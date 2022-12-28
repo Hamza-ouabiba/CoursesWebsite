@@ -12,7 +12,7 @@ const addCourseUi = (img,title,categorie,price) =>
     button.textContent = "Enroll Now";
     divBut.setAttribute('class','text-center');
     divBut.appendChild(button);
-    image.src = "http://localhost/emsiProjetPhp" + img;
+    image.src = "http://localhost/MiniProjetV2/" + img;
     image.setAttribute('class','card-img');
     div.setAttribute('class','card col-sm-12 col-lg-3 me-2 mb-2 text-center');
     p.setAttribute('class','card-title mt-2');
@@ -27,7 +27,7 @@ const addCourseUi = (img,title,categorie,price) =>
     ola.appendChild(div);
 }
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://localhost/emsiProjetPhp/panier.php");
+xhr.open("GET", "http://localhost/MiniProjetV2/AddingCourses/panier.php");
 xhr.onload = function() {
     if (xhr.status === 200) {
         // success

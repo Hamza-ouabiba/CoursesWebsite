@@ -2,7 +2,7 @@
     //connect to database : 
     $host = "localhost";
     $username = "root";
-    $dbName = "coursedb";
+    $dbName = "courses";
     $mysqli = mysqli_connect($host,$username,'',$dbName);
     if(!$mysqli)
         die("connction failed " . mysqli_connect_error());

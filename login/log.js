@@ -14,7 +14,7 @@ $('#m-form').submit(function(event) {
         console.log(data);
         if (data == '1') {
             alert('Login successful!');
-            window.location = "http://localhost/emsiProjetPhp/coursesUi/menu.html";
+            window.location = "http://localhost/MiniProjetV2/menu/menu.html";
         } else {
         alert(data);
         }
