@@ -6,7 +6,7 @@
     if ($obj->type == 'logout') {
         // Perform logout actions
         session_destroy();
-        header('Location: http://localhost/emsiProjetPhp/index.html');
+        header('Location: http://localhost/MiniProjetV2/login/index.html');
         exit();
     }
 ?>

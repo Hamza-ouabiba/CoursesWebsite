@@ -146,8 +146,8 @@ var courses = [
 //     console.log("course 1");
 //     addCourseDataBase(course);
 // })
-var coursesMenu = document.querySelector(".content");
-var signOutBtn = document.getElementById("signOut");
+
+
 const addCourseUi = (img,title,categorie,price) =>
 {
     let div = document.createElement('div');
@@ -160,11 +160,11 @@ const addCourseUi = (img,title,categorie,price) =>
     button.textContent = "Enroll Now";
     divBut.setAttribute('class','text-center');
     divBut.appendChild(button);
-    image.src = "http://localhost/emsiProjetPhp" + img;
+    image.src = "http://localhost/MiniProjetV2" + img;
     image.setAttribute('class','card-img');
     div.setAttribute('class','card col-sm-12 col-lg-3 me-2 mb-2 text-center');
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost/MiniProjetV2/retrieveCourse.php");
+    xhr.open("GET", "http://localhost/MiniProjetV2/coursesUi/retrieveCourse.php");
     xhr.onload = function() {
         if (xhr.status === 200) {
             // success
@@ -172,7 +172,7 @@ const addCourseUi = (img,title,categorie,price) =>
             for(let i = 0;i<data.length;i++)
             {
                 if(data[i].title == title)
-                    div.setAttribute('data-course-id',data[i].idCourse);
+                    div.setAttribute('data-course-id',data[i].courseId);
             }
             // process the data
         } else {

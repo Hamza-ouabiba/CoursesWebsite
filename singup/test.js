@@ -101,7 +101,7 @@ form.addEventListener('submit',(e) => {
         //clear fields:  
         clearFields();
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/emsiProjetPhp/signup.php');
+        xhr.open('POST','http://localhost/MiniProjetV2/signup.php');
         xhr.send(formData);
         xhr.onload = function() {
             if (xhr.status === 200) {

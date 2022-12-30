@@ -5,7 +5,7 @@ $('#m-form').submit(function(event) {
     var password = $('#password').val();
     $.ajax({
     type: 'POST',
-    url: 'http://localhost/emsiProjetPhp/login.php',
+    url: 'http://localhost/MiniProjetV2/login/login.php',
     data: { 
         username: username,
         password: password

@@ -19,8 +19,8 @@
     if(mysqli_num_rows($result) > 0)
     {
         $row = $result->fetch_assoc();
-        $user_id = $row['userid'];
-        $_SESSION['userid'] = $user_id;
+        $user_id = $row['userId'];
+        $_SESSION['userId'] = $user_id;
         echo '1';
     }
     else

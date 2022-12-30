@@ -7,7 +7,7 @@
     $mysqli = mysqli_connect($host,$username,'',$dbName);
     $registration_time = date("Y-m-d H:i:s");  // current date and time
     // Get the current user's ID
-    $user_id = $_SESSION['userid'];
+    $user_id = $_SESSION['userId'];
     if(!$mysqli)
         die("connction failed " . mysqli_connect_error());
     function checkCourseData($id_cmd,$_courseId) 
@@ -52,6 +52,7 @@
     }
     //getting the course id from the ajax requst : 
     $json = file_get_contents('php://input');
+    print($json);
     $obj = json_decode($json);
     $courseId = $obj->CourseId;
     //insert course and command to contient table : 

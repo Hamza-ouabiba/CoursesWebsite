@@ -1,5 +1,5 @@
-var ola = document.querySelector(".content");
-var buyButton = document.querySelector('#buy');
+let ola = document.querySelector(".content");
+let buyButton = document.querySelector('#buy');
 console.log(ola);
 const addCourseUi = (img,title,categorie,price) =>
 {
@@ -7,9 +7,7 @@ const addCourseUi = (img,title,categorie,price) =>
     let image = document.createElement('img');
     let p  = document.createElement('p');
     let span = document.createElement('span');
-<<<<<<<< HEAD:coursesUi/panier/panier.js
-    image.src = "http://localhost/emsiProjetPhp" + img;
-========
+    image.src = "http://localhost/MiniProjetV2" + img;
     let divBut = document.createElement('div');
     let button = document.createElement('button');
     button.setAttribute('class','btn btn-info p-2 mb-3 w-50 mt-3');
@@ -17,7 +15,6 @@ const addCourseUi = (img,title,categorie,price) =>
     divBut.setAttribute('class','text-center');
     divBut.appendChild(button);
     image.src = "http://localhost/MiniProjetV2/" + img;
->>>>>>>> 8f729d5bb74de2713022200015704a29069fff3d:AddingCourses/panier.js
     image.setAttribute('class','card-img');
     div.setAttribute('class','card col-sm-3 col-lg-3 me-2 mb-2 text-center');
     p.setAttribute('class','card-title mt-2');
@@ -30,7 +27,7 @@ const addCourseUi = (img,title,categorie,price) =>
     div.appendChild(span);
     ola.appendChild(div);
 }
-var xhr = new XMLHttpRequest();
+let xhr = new XMLHttpRequest();
 xhr.open("GET", "http://localhost/MiniProjetV2/AddingCourses/panier.php");
 xhr.onload = function() {
     if (xhr.status === 200) {
@@ -49,9 +46,11 @@ xhr.onload = function() {
 xhr.send();
 
 //buy an item: 
-buyButton.addEventListener('click',() => {
+buyButton.addEventListener('click',(e) => {
+    e.preventDefault();
+    console.log("hna");
     var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/emsiProjetPhp/commandeCh.php');
+        xhr.open('POST','http://localhost/MiniProjetV2/AddingCourses/CommandeCh.php');
         xhr.send();
         xhr.onload = function() {
             if (xhr.status === 200) {

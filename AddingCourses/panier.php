@@ -8,7 +8,7 @@
     $mysqli = mysqli_connect($host,$username,'',$dbName);
     if(!$mysqli)
         die("connction failed " . mysqli_connect_error());
-    $user_id = $_SESSION['userid'];
+    $user_id = $_SESSION['userId'];
     $sql = "select idCmd from commande where userid = $user_id and etat = 0";
     $result = mysqli_query($mysqli, $sql);
     // Fetch the rows one by one
@@ -25,7 +25,7 @@
         {
             // echo $row['idCourse'] . " ";
             $idCo = $row['idCourse'];
-            $sql = "select * from course where idCourse = $idCo";
+            $sql = "select * from course where courseId = $idCo";
             $result2 = mysqli_query($mysqli, $sql);
             if($rowCourse = mysqli_fetch_assoc($result2))
             {

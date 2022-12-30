@@ -1,10 +1,10 @@
-var coursesMenu = document.querySelector(".content");
-var search = document.getElementById("search");
-var categories_ = document.querySelector('ul#categorie');
-var price = document.getElementById("price");
-var categorieCourse_dom = "all";
-var price_change = 0.0;
-var dispo = document.querySelector(".error-dispo");
+let coursesMenu = document.querySelector(".content");
+let search = document.getElementById("search");
+let categories_ = document.querySelector('ul#categorie');
+let price = document.getElementById("price");
+let categorieCourse_dom = "all";
+let price_change = 0.0;
+let dispo = document.querySelector(".error-dispo");
 const addCategorie = (categorie) =>
 {
     let li = document.createElement('li');
@@ -32,8 +32,8 @@ coursesMenu.addEventListener('click',(e) => {
             Image: image.src,
             // userId: 
         };
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/MiniProjetV2/AddingCourses/addProduct.php');
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST','http://localhost/MiniProjetV2/coursesUi/addproduct/addProduct.php');
         xhr.send(JSON.stringify(data));
         xhr.onload = function() {
             if (xhr.status === 200) {

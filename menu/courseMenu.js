@@ -1,8 +1,9 @@
-var coursesMenu = document.querySelector(".content");
-var signOutBtn = document.getElementById("signOut");
+let coursesMenu = document.querySelector(".content");
+let signOutBtn = document.getElementById("signOut");
 signOutBtn.addEventListener('click',(e) => {
+    console.log("hna")
     e.preventDefault();
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
@@ -14,13 +15,8 @@ signOutBtn.addEventListener('click',(e) => {
         }
 };
 
-<<<<<<< HEAD:coursesUi/courseMenu.js
 
-
-xhr.open('POST', 'http://localhost/emsiProjetPhp/logout.php');
-=======
-xhr.open('POST', 'http://localhost/MiniProjetV2/logout.php');
->>>>>>> 8f729d5bb74de2713022200015704a29069fff3d:menu/courseMenu.js
+xhr.open('POST', 'http://localhost/MiniProjetV2/login/logout.php');
 xhr.setRequestHeader('Content-Type', 'application/xml');
 xhr.send('<request><type>logout</type></request>');
 
@@ -44,7 +40,7 @@ coursesMenu.addEventListener('click',(e) => {
             // userId: 
         };
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/emsiProjetPhp/addProduct.php');
+        xhr.open('POST','http://localhost/MiniProjetV2/AddingCourses/addProduct.php');
         xhr.send(JSON.stringify(data));
         xhr.onload = function() {
             if (xhr.status === 200) {
@@ -62,5 +58,6 @@ coursesMenu.addEventListener('click',(e) => {
 
 for(let i = 0;i<3;i++) {
     addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
+    console.log("adding");
 }
 
