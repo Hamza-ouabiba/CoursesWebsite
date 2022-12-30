@@ -5,6 +5,11 @@ let price = document.getElementById("price");
 let categorieCourse_dom = "all";
 let price_change = 0.0;
 let dispo = document.querySelector(".error-dispo");
+console.log(price.max);
+let max = Math.max(...courses.map(course => course.price));
+let min = Math.min(...courses.map(course => course.price));
+price.max = max;
+price.min = min;
 const addCategorie = (categorie) =>
 {
     let li = document.createElement('li');
@@ -14,7 +19,8 @@ const addCategorie = (categorie) =>
     li.appendChild(button);
     document.getElementById("categorie").appendChild(li);
 }
-
+//setting the max of a input : 
+console.log(max);
 //enroll a course : 
 coursesMenu.addEventListener('click',(e) => {
     if(e.target.tagName == "BUTTON") {
@@ -138,7 +144,7 @@ categories_.addEventListener('click',(e) => {
          {
             coursesMenu.textContent = "";
             let categorieCourse = courses.filter(course => {
-                return course.price == price_change && course.category == categorieCourse_dom;
+                return course.price <= price_change && course.category == categorieCourse_dom;
             });
             if(categorieCourse.length != 0)
             {
@@ -170,7 +176,7 @@ price.addEventListener('change',() => {
     {
         console.log("hna cat");
         let priceCourse = courses.filter(course => {
-            return course.price == price.value && course.category == categorieCourse_dom;
+            return course.price <= price.value && course.category == categorieCourse_dom;
         });
         coursesMenu.textContent = "";
         if(priceCourse.length != 0)
@@ -188,8 +194,9 @@ price.addEventListener('change',() => {
         }
     } else {
         coursesMenu.textContent = "";
+        console.log(price.value);   
         let priceCourse = courses.filter(course => {
-            return course.price == price.value;
+            return course.price <= price.value;
         });
         if(priceCourse.length != 0){
             priceCourse.forEach(course =>{
@@ -197,6 +204,7 @@ price.addEventListener('change',() => {
             })
         } else {
             //not showing data : 
+
         }
     }
 });

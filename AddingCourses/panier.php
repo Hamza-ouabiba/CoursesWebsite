@@ -23,7 +23,6 @@
     
         while ($row = mysqli_fetch_assoc($result))
         {
-            // echo $row['idCourse'] . " ";
             $idCo = $row['idCourse'];
             $sql = "select * from course where courseId = $idCo";
             $result2 = mysqli_query($mysqli, $sql);

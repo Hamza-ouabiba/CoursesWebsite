@@ -43,7 +43,7 @@
         $sql = "select idCmd from commande where userid = $user_id and etat = 0";
         $result = mysqli_query($mysqli, $sql);
         // Fetch the rows one by one
-        if(mysqli_num_rows($result) > 0)
+        
         {
             $row = $result->fetch_assoc();
             $cmd_id = $row['idCmd'];
@@ -55,12 +55,23 @@
     print($json);
     $obj = json_decode($json);
     $courseId = $obj->CourseId;
-    //insert course and command to contient table : 
-    $sql = "INSERT INTO contient(idCmd,idCourse) values(?,?)";
-    $stmt = mysqli_prepare($mysqli,$sql);
-    mysqli_stmt_bind_param($stmt,"ii",$cmd_id,$courseId);
-    $result = mysqli_stmt_execute($stmt);
-    //close connection : 
-    echo $cmd_id;
-    mysqli_close($mysqli);
+    echo $_SESSION['idCmd'];
+    //check if the user already added this product to cart
+    $query = "SELECT idCourse from  contient where idCmd = $cmd_id and idCourse = $courseId";
+    $res = mysqli_query($mysqli, $query);
+    echo "hna";
+    if(mysqli_num_rows($res) > 0)
+        echo "Product already exist in database";
+     else 
+    {
+        //insert course and command to contient table : 
+        $sql = "INSERT INTO contient(idCmd,idCourse) values(?,?)";
+        $stmt = mysqli_prepare($mysqli,$sql);
+        mysqli_stmt_bind_param($stmt,"ii",$cmd_id,$courseId);
+        $result = mysqli_stmt_execute($stmt);
+        //close connection : 
+        echo $cmd_id;
+        mysqli_close($mysqli);
+    }
+    
 ?>

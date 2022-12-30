@@ -169,6 +169,7 @@ const addCourseUi = (img,title,categorie,price) =>
         if (xhr.status === 200) {
             // success
             var data = JSON.parse(xhr.responseText);
+            console.log(data);
             for(let i = 0;i<data.length;i++)
             {
                 if(data[i].title == title)

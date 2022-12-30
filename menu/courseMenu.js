@@ -15,7 +15,6 @@ signOutBtn.addEventListener('click',(e) => {
         }
 };
 
-
 xhr.open('POST', 'http://localhost/MiniProjetV2/login/logout.php');
 xhr.setRequestHeader('Content-Type', 'application/xml');
 xhr.send('<request><type>logout</type></request>');
@@ -40,7 +39,7 @@ coursesMenu.addEventListener('click',(e) => {
             // userId: 
         };
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/MiniProjetV2/AddingCourses/addProduct.php');
+        xhr.open('POST','http://localhost/MiniProjetV2/coursesUi/addproduct/addProduct.php');
         xhr.send(JSON.stringify(data));
         xhr.onload = function() {
             if (xhr.status === 200) {
