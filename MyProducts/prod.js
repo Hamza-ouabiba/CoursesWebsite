@@ -52,11 +52,11 @@ xhr.onload = function() {
              coursesObject = JSON.parse(xhr.responseText);
              let max = Math.max(...coursesObject.map(course => course.price));
             let min = Math.min(...coursesObject.map(course => course.price));
+            document.getElementById('priceVal').innerText ="value" + max+" $";
             price.max = max;
             price.min = min;
             // process the data
             coursesObject.forEach(course => {
-                
                 addCourseUi(course.image,course.title,course.category,course.price,course.courseId);
             })
         } else 
@@ -68,21 +68,11 @@ xhr.onload = function() {
 xhr.send();
 console.log("hna : "+ coursesObject);
 const searchCourse = (title) => {
-    if(categorieCourse_dom != 'all') 
-    {
-        console.log(categorieCourse_dom);
-        for(let i = 0;i<coursesObject.length;i++) {
-            if(coursesObject[i].title.toLocaleLowerCase().includes(title) && categorieCourse_dom == coursesObject[i].category) {
-                addCourseUi(coursesObject[i].image,coursesObject[i].title,coursesObject[i].category,coursesObject[i].price);
-            }
-        }
-    }else {
         for(let i = 0;i<coursesObject.length;i++) {
             if(coursesObject[i].title.toLocaleLowerCase().includes(title) ) {
                 addCourseUi(coursesObject[i].image,coursesObject[i].title,coursesObject[i].category,coursesObject[i].price);
             }
         }
-    }
 }
 //searching 
 search.addEventListener('keyup',() =>{
@@ -90,22 +80,10 @@ search.addEventListener('keyup',() =>{
     //which means that the user is typing in real time so we should show him courses typed : 
     if(search.value != "")
         searchCourse(search.value.toLowerCase());
-    else {
-        //if user clicked in a category and typed a name of course : 
-        coursesMenu.textContent = "";
-        if(categorieCourse_dom != "all")
-        {
-            for(let i = 0;i<coursesObject.length;i++) {
-                if(categorieCourse_dom == courses[i].category) {
-                    addCourseUi(coursesObject[i].image,coursesObject[i].title,coursesObject[i].category,coursesObject[i].price);
-                }
-            }
-        } else 
-        {
-            coursesObject.forEach(course =>{
-                addCourseUi(course.image,course.title,course.category,course.price);
-            })
-        }
+    else 
+    {
+        for(let i = 0;i<coursesObject.length;i++) 
+                addCourseUi(coursesObject[i].image,coursesObject[i].title,coursesObject[i].category,coursesObject[i].price);
     }
 });
 
@@ -113,32 +91,17 @@ search.addEventListener('keyup',() =>{
 price.addEventListener('change',() => {
     document.getElementById("priceVal").textContent = "Value :  "+ price.value + " $";
     price_change = price.value;
-    if(categorieCourse_dom != "all")
-    {
-        console.log("hna cat");
-        let priceCourse = coursesObject.filter(course => {
-            return course.price <= price.value && course.category == categorieCourse_dom;
-        });
-        coursesMenu.textContent = "";
-        if(priceCourse.length != 0)
-        {
-            priceCourse.forEach(course =>{
-                addCourseUi(course.image,course.title,course.category,course.price);
-            })
-        }
+    coursesMenu.textContent = "";
+    let priceCourse = coursesObject.filter(course => {
+        return course.price <= parseFloat(price.value);
+    });
+    if(priceCourse.length != 0){
+        console.log(priceCourse);
+        priceCourse.forEach(course =>{
+            addCourseUi(course.image,course.title,course.category,course.price);
+        })
     } else {
-        coursesMenu.textContent = "";
-        console.log(price.value);   
-        let priceCourse = coursesObject.filter(course => {
-            return course.price <= price.value;
-        });
-        if(priceCourse.length != 0){
-            priceCourse.forEach(course =>{
-                addCourseUi(course.image,course.title,course.category,course.price);
-            })
-        } else {
-            //not showing data : 
+        //not showing data : 
 
-        }
     }
 });

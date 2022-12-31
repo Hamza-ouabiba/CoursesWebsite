@@ -269,7 +269,7 @@ price.addEventListener('change',() => {
     {
         console.log("hna cat");
         let priceCourse = courses.filter(course => {
-            return course.price <= price.value && course.category == categorieCourse_dom;
+            return course.price <= parseFloat(price.value) && course.category == categorieCourse_dom;
         });
         coursesMenu.textContent = "";
         if(priceCourse.length != 0)
@@ -289,7 +289,7 @@ price.addEventListener('change',() => {
         coursesMenu.textContent = "";
         console.log(price.value);   
         let priceCourse = courses.filter(course => {
-            return course.price <= price.value;
+            return course.price <= parseFloat(price.value);
         });
         if(priceCourse.length != 0){
             priceCourse.forEach(course =>{
