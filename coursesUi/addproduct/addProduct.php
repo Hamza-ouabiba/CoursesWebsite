@@ -51,7 +51,7 @@
     // echo $_SESSION['idCmd'];
     // print($_SESSION['idCmd']);
     //check if the user already bought to this user : 
-    $query = "select * from userclient join commande on userclient.userId = commande.userid join contient on commande.idCmd = contient.idCmd where contient.idCourse = $courseId";
+    $query = "select * from userclient join commande on userclient.userId = commande.userid join contient on commande.idCmd = contient.idCmd where contient.idCourse = $courseId and userclient.userId = $user_id";
     $res = mysqli_query($mysqli, $query);
     if(mysqli_num_rows($res) > 0)
         echo "no";

@@ -5,7 +5,7 @@ var email = document.getElementById("email");
 var form = document.querySelector('#m-form');
 var feedback = document.querySelector('.feedback');
 var patternUsername = /[a-zA-Z]{7,}/;
-var patternEmail = /[a-zA-Z]*@[a-zA-Z0-9_+-]*.[a-zA-Z0-9]*/;
+var patternEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 var patternPass = /[a-zA-Z0-9+]{8,}/;
 const clearFields = () =>{
     username.style.border = "1px solid rgb(206, 206, 206)";
