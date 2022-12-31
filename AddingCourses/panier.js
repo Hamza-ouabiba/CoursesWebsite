@@ -69,7 +69,7 @@ buyButton.addEventListener('click',(e) => {
         xhr.onload = function() {
             if (xhr.status === 200) {
                 // success*
-                alert(xhr.responseText);
+                // alert(xhr.responseText);
                 setTimeout(() => {
                     window.location = "http://localhost/MiniProjetV2/AddingCourses/panier.html";
                 },2000);
@@ -91,14 +91,14 @@ function deleteProduct()
         xhr.onload = function() {
             if (xhr.status === 200) {
                 // success*
-                alert(xhr.responseText);
+                // alert(xhr.responseText);
                 window.location = "http://localhost/MiniProjetV2/AddingCourses/panier.html";
                 // process the data
             } else {
                 // error
                 alert("error");
             }
-        };
+        };  
    }
 }
 deleteConfir.addEventListener('click',(event) => {

@@ -26,19 +26,22 @@
     } else 
     {
         $etat = 0;
-        $sql = "INSERT INTO commande(dateEffe,userid,etat) values(?,?,? )";
+        $sql = "INSERT INTO commande(dateEffe,userid,etat) values(?,?,?)";
         $stmt = mysqli_prepare($mysqli,$sql);
         mysqli_stmt_bind_param($stmt,"sii",$registration_time,$user_id,$etat);
-        $result = mysqli_stmt_execute($stmt);
-        $sql = "select idCmd from commande where userid = $user_id and etat = 0";
-        $result = mysqli_query($mysqli, $sql);
+        $insertCommande = mysqli_stmt_execute($stmt);
+        $queryCommande = "select idCmd from commande where userid = $user_id and etat = 0";
+        $result = mysqli_query($mysqli, $queryCommande);
         // Fetch the rows one by one
-        while($row = mysqli_fetch_assoc($result))
+        if(mysqli_num_rows($result) > 0)
         {
-            $row = $result->fetch_assoc();
-            $cmd_id = $row['idCmd'];
-            $_SESSION['idCmd'] = $cmd_id;
-        }
+            while($row = mysqli_fetch_assoc($result))
+            {
+                // echo $row['idCmd'];
+                $cmd_id = $row['idCmd'];
+                $_SESSION['idCmd'] = $cmd_id;
+            }
+        } 
     }
     //getting the course id from the ajax requst : 
     $json = file_get_contents('php://input');
@@ -46,6 +49,7 @@
     $obj = json_decode($json);
     $courseId = $obj->CourseId;
     // echo $_SESSION['idCmd'];
+    // print($_SESSION['idCmd']);
     //check if the user already added this product to cart
     $query = "SELECT idCourse from  contient where idCmd = $cmd_id and idCourse = $courseId";
     $res = mysqli_query($mysqli, $query);
@@ -54,8 +58,8 @@
      else 
     {
         //insert course and command to contient table : 
-        $sql = "INSERT INTO contient(idCmd,idCourse) values(?,?)";
-        $stmt = mysqli_prepare($mysqli,$sql);
+        $sqlCart = "INSERT INTO contient(idCmd,idCourse) values(?,?)";
+        $stmt = mysqli_prepare($mysqli,$sqlCart);
         mysqli_stmt_bind_param($stmt,"ii",$cmd_id,$courseId);
         $result = mysqli_stmt_execute($stmt);
         //close connection : 
