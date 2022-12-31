@@ -50,8 +50,8 @@
     $courseId = $obj->CourseId;
     // echo $_SESSION['idCmd'];
     // print($_SESSION['idCmd']);
-    //check if the user already added this product to cart
-    $query = "SELECT idCourse from  contient where idCmd = $cmd_id and idCourse = $courseId";
+    //check if the user already bought to this user : 
+    $query = "select * from userclient join commande on userclient.userId = commande.userid join contient on commande.idCmd = contient.idCmd where contient.idCourse = $courseId";
     $res = mysqli_query($mysqli, $query);
     if(mysqli_num_rows($res) > 0)
         echo "no";

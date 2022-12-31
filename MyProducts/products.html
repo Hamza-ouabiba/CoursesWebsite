@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Document</title>
 </head>
-<style>
-</style>
 <body>
+    <!--Navbar-->
     <div class="navbar navbar-expand-md bg-dark navbar-dark">
         <div class="container">
             <a href="http://localhost/MiniProjetV2/menu/menu.html" class="navbar-brand text-light"><i class="fas text-danger fa-books p-3"></i>E -<span class="text-danger p-2">Courses</span></a>
             <button data-toggle="collapse" data-target="#nav" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-         <div class="collapse navbar-collapse text-white" id="nav">
-             <ul class="navbar-nav ms-auto  ">
+         <div class="collapse navbar-collapse text-muted " id="nav">
+             <ul class="navbar-nav ms-auto ">
                  <li class="nav-item mt-2"><a href="http://localhost/MiniProjetV2/menu/menu.html" class="nav-links p-3 text-muted text-decoration-none md-auto ">Home</a></li>
-                 <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none md-auto">Courses</a></li>
+                 <li class="nav-item mt-2"><a href="http://localhost/MiniProjetV2/coursesUi/allcourses.html" class="nav-links p-3 text-muted text-decoration-none md-auto">Courses</a></li>
                  <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none">About</a></li>
                  <li class="nav-item mt-2"><a href="http://localhost/MiniProjetV2/MyProducts/products.html" class="nav-links p-3 text-muted text-decoration-none md-auto ">My Products</a></li>
                  <li class="nav-item "><button id="signOut" class="nav-links btn btn-danger text-light ">Sign Out <i class="fas fa-sign-out-alt"></i></button></li>
@@ -28,26 +27,29 @@
      </div>
   </div>
   <div class="container d-flex mt-5">
-      <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12 me-3 px-5">
-          <input type="text" id="search" class="form-control mb-2 shadow-none" placeholder="search">
-          <h3>Category</h3>
-          <ul class="list-inline ml-5" id="categorie">
-            
-          </ul>
-          <h3>Prices</h3>
-          <input type="range" name="" id="price" min=0 max =100 step="0.3" value="69.9">
-          <label for="" class="d-block" id="priceVal">Value: 69.9 $</label>
-      </div>
-     <div class="error-dispo" style="visibility: hidden;"><h3>Aucun produit disponible pour ce prix!</h3></div>
-      <div class="col-lg-9 col-sm-5 col-md-3 d-flex flex-wrap content">
-        <div class="content">
-
-        </div>
+    <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12 me-3 px-5">
+        <input type="text" id="search" class="form-control mb-2 shadow-none" placeholder="search">
+        <h3>Category</h3>
+        <ul class="list-inline ml-5" id="categorie">
+          
+        </ul>
+        <h3>Prices</h3>
+        <input type="range" name="" id="price" min=0 max =100 step="0.3" value="69.9">
+        <label for="" class="d-block" id="priceVal">Value: 69.9 $</label>
     </div>
+    <div class="col-lg-9 col-sm-5 col-md-3 d-flex flex-wrap content">
+      <div class="content">
+
+      </div>
   </div>
-  <script src="http://localhost/MiniProjetV2/coursesUi/courseDB.js"></script>
-  <script src="http://localhost/MiniProjetV2/coursesUi/allcourses.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+  <div class="container">
+        <div class="error">
+            <h3 class="mt-4" id="nonePro"></h3>
+        </div>
+  </div>
+    <script src="http://localhost/MiniProjetV2/MyProducts/prod.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
