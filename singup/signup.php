@@ -19,7 +19,7 @@
     if($result){
         echo "Data stored";
     } else 
-        echo "error ya dink";
+        echo "error ";
 
     //close connection : 
     mysqli_close($mysqli);
