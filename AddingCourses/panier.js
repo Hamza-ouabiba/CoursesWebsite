@@ -3,6 +3,7 @@ let buyButton = document.querySelector('#buy');
 let table = document.querySelector('#tableBod');
 let deleteConfir = document.querySelector('#confirmDelete');
 let courseId = -1;
+let total = document.getElementById('total');
 const addCourseUi = (img,title,categorie,price,courseId) =>
 {
     let tr = document.createElement("tr");
@@ -33,6 +34,13 @@ const addCourseUi = (img,title,categorie,price,courseId) =>
     table.appendChild(tr);
     table.style.visibility = "visible";
 }
+const calculTotal = (courses) =>
+{
+   let total = 0.0;
+   for(let i = 0;i<courses.length;i++)
+        total+= parseFloat(courses[i].price);
+    return total.toFixed(2);
+}
 let xhr = new XMLHttpRequest();
 xhr.open("GET", "http://localhost/MiniProjetV2/AddingCourses/panier.php");
 xhr.onload = function() {
@@ -49,6 +57,7 @@ xhr.onload = function() {
             coursesObject.forEach(course => {
                 addCourseUi(course.image,course.title,course.category,course.price,course.courseId);
             })
+            total.textContent = "Amount of : " + calculTotal(coursesObject) + "$";
         } else 
         {
             buyButton.disabled = "false";

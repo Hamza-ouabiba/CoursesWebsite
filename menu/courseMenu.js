@@ -45,11 +45,10 @@ coursesMenu.addEventListener('click',(e) => {
             if (xhr.status === 200) {
                 // success*
                 console.log(xhr.responseText);
-                // if(xhr.responseText == "yes")
-                //     alert('Article ajoutée au Panier');
-                // else 
-                //     alert('Article deja existant dans votre panier');
-                // // process the data
+                if(xhr.responseText == "yes")
+                    alert('Article ajoutée au Panier');
+                else 
+                    alert('Article deja existant dans votre panier');
             } else {
                 // error
 
