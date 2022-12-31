@@ -5,6 +5,27 @@ let price = document.getElementById("price");
 let categorieCourse_dom = "all";
 let price_change = 0.0;
 let dispo = document.querySelector(".error-dispo");
+let signOutBtn = document.getElementById("signOut");
+signOutBtn.addEventListener('click',(e) => {
+    console.log("hna")
+    e.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                console.log('Logout successful');
+                window.location = "http://localhost/MiniProjetV2/login/index.html";
+            } else {
+                console.error('Error: ' + xhr.status);
+            }
+        }
+};
+
+xhr.open('POST', 'http://localhost/MiniProjetV2/login/logout.php');
+xhr.setRequestHeader('Content-Type', 'application/xml');
+xhr.send('<request><type>logout</type></request>');
+
+});
 console.log(price.max);
 let max = Math.max(...courses.map(course => course.price));
 let min = Math.min(...courses.map(course => course.price));
@@ -44,10 +65,13 @@ coursesMenu.addEventListener('click',(e) => {
         xhr.onload = function() {
             if (xhr.status === 200) {
                 // success*
-                console.log(xhr.responseText);
-                alert('commande ajoutée');
+                if(xhr.responseText == "yes")
+                    alert('Article ajoutée au Panier');
+                else 
+                    alert('Article deja existant dans votre panier');
                 // process the data
             } else {
+
                 // error
             }
         };

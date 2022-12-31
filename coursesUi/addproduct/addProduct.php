@@ -10,16 +10,6 @@
     $user_id = $_SESSION['userId'];
     if(!$mysqli)
         die("connction failed " . mysqli_connect_error());
-    function checkCourseData($id_cmd,$_courseId) 
-    {
-        $sql = "SELECT * from contient where idCourse = $id_cmd AND idCmd = $courseId";
-        $stmt = mysqli_prepare($mysqli,$sql);
-        mysqli_stmt_bind_param($stmt,"sii",$registration_time,$user_id,$etat);
-        $result = mysqli_stmt_execute($stmt); 
-        if(mysqli_num_rows($result) > 0)
-            return true;
-        return false;
-    }
     //check if the session variable has only one order if so then just keep the order id : 
     //insert data to database : 
     
@@ -32,7 +22,7 @@
         $row = $result->fetch_assoc();
         $cmd_id = $row['idCmd'];
         $_SESSION['idCmd'] = $cmd_id;
-        
+        // echo "commande ".$cmd_id;
     } else 
     {
         $etat = 0;
@@ -43,7 +33,7 @@
         $sql = "select idCmd from commande where userid = $user_id and etat = 0";
         $result = mysqli_query($mysqli, $sql);
         // Fetch the rows one by one
-        
+        while($row = mysqli_fetch_assoc($result))
         {
             $row = $result->fetch_assoc();
             $cmd_id = $row['idCmd'];
@@ -52,16 +42,15 @@
     }
     //getting the course id from the ajax requst : 
     $json = file_get_contents('php://input');
-    print($json);
+    // print($json);
     $obj = json_decode($json);
     $courseId = $obj->CourseId;
-    echo $_SESSION['idCmd'];
+    // echo $_SESSION['idCmd'];
     //check if the user already added this product to cart
     $query = "SELECT idCourse from  contient where idCmd = $cmd_id and idCourse = $courseId";
     $res = mysqli_query($mysqli, $query);
-    echo "hna";
     if(mysqli_num_rows($res) > 0)
-        echo "Product already exist in database";
+        echo "no";
      else 
     {
         //insert course and command to contient table : 
@@ -70,8 +59,9 @@
         mysqli_stmt_bind_param($stmt,"ii",$cmd_id,$courseId);
         $result = mysqli_stmt_execute($stmt);
         //close connection : 
-        echo $cmd_id;
-        mysqli_close($mysqli);
+        echo "yes";
+        // echo $cmd_id;
     }
+    mysqli_close($mysqli);
     
 ?>

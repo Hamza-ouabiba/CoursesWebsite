@@ -161,6 +161,7 @@ const addCourseUi = (img,title,categorie,price) =>
     divBut.setAttribute('class','text-center');
     divBut.appendChild(button);
     image.src = "http://localhost/MiniProjetV2" + img;
+    image.height = 140;
     image.setAttribute('class','card-img');
     div.setAttribute('class','card col-sm-12 col-lg-3 me-2 mb-2 text-center');
     var xhr = new XMLHttpRequest();

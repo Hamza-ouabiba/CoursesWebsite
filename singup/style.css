@@ -1,0 +1,33 @@
+*{
+    font-family: sans-serif;
+}
+body
+{
+    background-image: url('http://localhost/MiniProjetV2/backGroundImage/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 500px 400px;
+    background-position: 1000px;
+    background-color: #121212;
+}
+label{
+    display: block;
+    color: #626262;
+}
+
+.l-signup{
+    margin-top: 10px;
+}
+.formulaire{
+    border-radius: 3px;
+    opacity: 0.7;
+    background-color: #202020;
+}
+input{
+    outline: none;
+    color: white;
+    border: 1px solid rgb(206, 206, 206);
+}
+input{
+    background-color: #2b2b2b;
+    border: none;
+}

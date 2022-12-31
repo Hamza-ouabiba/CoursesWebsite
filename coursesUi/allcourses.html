@@ -9,11 +9,6 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <style>
-     img{
-            height: 130px;
-        }
-        .content{
-        }
 </style>
 <body>
     <div class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -22,17 +17,17 @@
             <button data-toggle="collapse" data-target="#nav" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
          <div class="collapse navbar-collapse text-white" id="nav">
              <ul class="navbar-nav ms-auto  ">
-                 <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none md-auto ">Sign Up</a></li>
-                 <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none md-auto">Sign in</a></li>
-                 <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none">Contactez-Us</a></li>
+                 <li class="nav-item mt-2"><a href="http://localhost/MiniProjetV2/menu/menu.html" class="nav-links p-3 text-muted text-decoration-none md-auto ">Home</a></li>
+                 <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none md-auto">Courses</a></li>
+                 <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none">About</a></li>
                  <li class="nav-item "><button id="signOut" class="nav-links btn btn-danger text-light ">Sign Out <i class="fas fa-sign-out-alt"></i></button></li>
-                 <li class="nav-item "><a id="cart" class="nav-links btn shadow-none " href="http://localhost/MiniProjetV2/AddingCourses/panier.html">dqzdqz<i class="fas fa-1x fa-shopping-cart  text-danger"></i></a></li>
+                 <li class="nav-item "><a id="cart" class="nav-links btn shadow-none text-light" href="http://localhost/MiniProjetV2/AddingCourses/panier.html">Cart <i class="fas fa-1x fa-shopping-cart text-danger"></i></a></li>
              </ul>
        </div>
      </div>
   </div>
   <div class="container d-flex mt-5">
-      <div class="col-lg-3 col-12 me-3 px-5">
+      <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12 me-3 px-5">
           <input type="text" id="search" class="form-control mb-2 shadow-none" placeholder="search">
           <h3>Category</h3>
           <ul class="list-inline ml-5" id="categorie">
@@ -41,10 +36,9 @@
           <h3>Prices</h3>
           <input type="range" name="" id="price" min=0 max =100 step="0.3" value="0">
           <label for="" class="d-block" id="priceVal"></label>
-          <h3>Sort</h3>
       </div>
      <div class="error-dispo" style="visibility: hidden;"><h3>Aucun produit disponible pour ce prix!</h3></div>
-      <div class="col-lg-9 col-12 d-flex flex-wrap content">
+      <div class="col-lg-9 col-sm-5 col-md-3 d-flex flex-wrap content">
         <div class="content">
 
         </div>
@@ -52,5 +46,7 @@
   </div>
   <script src="http://localhost/MiniProjetV2/coursesUi/courseDB.js"></script>
   <script src="http://localhost/MiniProjetV2/coursesUi/allcourses.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

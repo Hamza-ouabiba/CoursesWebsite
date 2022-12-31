@@ -7,73 +7,34 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <style>
-        *{
-            font-family: sans-serif;
-        }
-        /*body
-        {
-            background-image: url('./img.png');
-            background-repeat: no-repeat;
-            background-size: 300px 300px;
-            background-position: 900px;
-        }*/
-        label{
-            display: block;
-        }
-        .feedback-style{
-            background-color: rgb(124, 250, 124);
-        }
-        .l-signup{
-            margin-top: 10px;
-        }
-        .formulaire{
-            border: 1px solid rgb(206, 206, 206);
-            border-radius: 3px;
-            opacity: 0.9;
-        }
-        input{
-            outline: none;
-            border: 1px solid rgb(206, 206, 206);
-        }
-        .small {
-            width: 400px;
-            color: red;
-            margin-bottom: 10px;
-        }
-        .success {
-            width: 400px;
-            color: rgb(124, 250, 124);
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
-<body>
-        <div class="navbar navbar-expand-md bg-dark navbar-dark">
-            <div class="container">
-                <a href="" class="navbar-brand text-light"><i class="fas text-danger fa-books p-3"></i>E -<span class="text-danger p-2">Courses</span></a>
-                <button data-toggle="collapse" data-target="#nav" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-white " id="nav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="" class="nav-links p-3 text-muted text-decoration-none md-auto ">Sign Up</a></li>
-                    <li class="nav-item"><a href="" class="nav-links p-3 text-muted text-decoration-none md-auto">Sign in</a></li>
-                    <li class="nav-item"><a href="" class="nav-links p-3 text-muted text-decoration-none md-auto">Contactez-nous</a></li>
+<body >
+    <div class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container">
+            <a href="" class="navbar-brand text-light"><i class="fas text-danger fa-books p-3"></i>E -<span class="text-danger p-2">Courses</span></a>
+            <button data-toggle="collapse" data-target="#nav" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-white" id="nav">
+                <ul class="navbar-nav ms-auto  ">
+                    <li class="nav-item mt-2"><a href="http://localhost/MiniProjetV2/login/index.html" class="nav-links p-3 text-muted text-decoration-none md-auto">Sign In</a></li>
+                    <li class="nav-item mt-2"><a href="http://localhost/MiniProjetV2/singup/signup.html" class="nav-links p-3 text-muted text-decoration-none md-auto">Sign Up</a></li>
+                    <li class="nav-item mt-2"><a href="" class="nav-links p-3 text-muted text-decoration-none">About</a></li>
                 </ul>
         </div>
-        </div>
     </div>
-        <div class="container mt-5 col-lg-5 col-sm-2">
-            <div class="formulaire bg-light p-4 text-center">
+    </div>
+        <div class="container mt-5 col-lg-4 col-sm-5 col-md-12">
+            <div class="formulaire p-4 text-center">
                 <div class=" p-3 error" id="error">
-                    
+                    dqzd
                 </div>
-                <form id="m-form">
+                <form id="m-form" >
                     <div class="title">
-                        <h1>Sign In</h1>
+                        <h1 class="text-light">Sign In</h1>
                     </div>
                         <div class="input-email">
-                            <label>Email</label>
+                            <label>Username</label>
                             <input type="text" placeholder="Choose an username" id="username" class="w-75 border-light-1 p-2 m-3" name="username">
                         </div>
                         <div class="input-pass">
@@ -84,7 +45,7 @@
                             <button type="submit" class="btn btn-success w-50 m-3" id="btn">Sign In</button>
                         </div>
                     <div class="l-signup">
-                        <label for="">Not a member Yet? <a class="link-primary text-decoration-none" href="http://localhost/MiniProjetV2/singup/signup.html">Create an account</a></label>
+                        <label for="" class="text-light">Not a member Yet? <a class="link-primary text-decoration-none" href="http://localhost/MiniProjetV2/singup/signup.html">Create an account</a></label>
                     </div>
                 </form>
             </div>

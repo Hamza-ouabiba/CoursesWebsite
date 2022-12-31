@@ -16,24 +16,27 @@
     {
         $row = $result->fetch_assoc();
         $cmd_id = $row['idCmd'];
-        $sql = "SELECT * FROM contient where idCmd = $cmd_id";
+        $query = "SELECT * FROM contient where idCmd = $cmd_id";
         // Select all rows from the table
-        $result = mysqli_query($mysqli, $sql);
+        $res = mysqli_query($mysqli, $query);
         // Fetch the rows one by one
-    
-        while ($row = mysqli_fetch_assoc($result))
+        if(mysqli_num_rows($res) > 0)
         {
-            $idCo = $row['idCourse'];
-            $sql = "select * from course where courseId = $idCo";
-            $result2 = mysqli_query($mysqli, $sql);
-            if($rowCourse = mysqli_fetch_assoc($result2))
+            while ($row = mysqli_fetch_assoc($res))
             {
-                $data[] = $rowCourse;
+                $idCo = $row['idCourse'];
+                $querCourse = "select * from course where courseId = $idCo";
+                $result2 = mysqli_query($mysqli, $querCourse);
+                if($rowCourse = mysqli_fetch_assoc($result2))
+                {
+                    $data[] = $rowCourse;
+                }
             }
-        }
-        $_SESSION['cart'] = $data;
-        $json_data = json_encode($data);
-        echo $json_data; 
+            $_SESSION['cart'] = $data;
+            $json_data = json_encode($data);
+            echo $json_data; 
+        } 
+        
     }
     //close connection : 
     mysqli_close($mysqli);

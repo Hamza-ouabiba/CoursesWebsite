@@ -1,0 +1,41 @@
+*{
+    font-family: sans-serif;
+    
+}
+body{
+    background-color: #121212;
+}
+label{
+    display: block;
+    color: #626262;
+}
+.feedback-style{
+    background-color: rgb(124, 250, 124);
+}
+.l-signup{
+    margin-top: 10px;
+}
+.small {
+    width: 400px;
+    color: red;
+    margin-bottom: 10px;
+}
+.success {
+    width: 400px;
+    color: rgb(124, 250, 124);
+    margin-bottom: 10px;
+}
+.formulaire{
+    border-radius: 3px;
+    opacity: 0.7;
+    background-color: #202020;
+}
+input{
+    outline: none;
+    color: white;
+    border: 1px solid rgb(206, 206, 206);
+}
+input{
+    background-color: #2b2b2b;
+    border: none;
+}

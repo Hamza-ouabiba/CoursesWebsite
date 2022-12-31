@@ -15,14 +15,15 @@ $('#m-form').submit(function(event) {
         if (data == '1') {
             alert('Login successful!');
             window.location = "http://localhost/MiniProjetV2/menu/menu.html";
-        } else {
-        alert(data);
+        } else {    
+            alert('Invalid password or username');
+        
         }
     }
     });
 });
 });
-//to logout : 
+
 
 $('#signOut').click(function(event) {
     event.preventDefault();

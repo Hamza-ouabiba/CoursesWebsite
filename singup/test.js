@@ -100,8 +100,9 @@ form.addEventListener('submit',(e) => {
         var xhr = new XMLHttpRequest();
         //clear fields:  
         clearFields();
+        console.log("hhna");
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/MiniProjetV2/signup.php');
+        xhr.open('POST','http://localhost/MiniProjetV2/singup/signup.php');
         xhr.send(formData);
         xhr.onload = function() {
             if (xhr.status === 200) {
@@ -115,8 +116,10 @@ form.addEventListener('submit',(e) => {
             }
         };
         setTimeout(() => {
-            feedback.textContent = "Compte crée avec succés";
-             feedback.style.backgroundColor = "rgb(124, 250, 124)";
+             let p = document.createElement('p');
+             p.textContent = "Compte crée avec succés";
+             feedback.appendChild(p);
+             feedback.style.backgroundColor = "rgb(148, 238, 148)";
         },2);
         feedback.textContent = "";
         feedback.style.backgroundColor = "none";
