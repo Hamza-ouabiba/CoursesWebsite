@@ -163,19 +163,9 @@ t.forEach(categorie => {
 
 
 const searchCourse = (title) => {
-    if(categorieCourse_dom != 'all') 
-    {
-        console.log(categorieCourse_dom);
-        for(let i = 0;i<courses.length;i++) {
-            if(courses[i].title.toLocaleLowerCase().includes(title) && categorieCourse_dom == courses[i].category) {
-                addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
-            }
-        }
-    }else {
-        for(let i = 0;i<courses.length;i++) {
-            if(courses[i].title.toLocaleLowerCase().includes(title) ) {
-                addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
-            }
+    for(let i = 0;i<courses.length;i++) {
+        if(courses[i].title.toLocaleLowerCase().includes(title) ) {
+            addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
         }
     }
 }
@@ -184,120 +174,89 @@ search.addEventListener('keyup',() =>{
     coursesMenu.textContent = "";
     //which means that the user is typing in real time so we should show him courses typed : 
     if(search.value != "")
-        searchCourse(search.value.toLowerCase());
-    else {
-        //if user clicked in a category and typed a name of course : 
-        coursesMenu.textContent = "";
-        if(categorieCourse_dom != "all")
+    {
+        if(categorieCourse_dom == "all")
         {
-            for(let i = 0;i<courses.length;i++) {
-                if(categorieCourse_dom == courses[i].category) {
-                    addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
-                }
-            }
+            searchCourse(search.value.toLocaleLowerCase());
         } else 
         {
-            courses.forEach(course =>{
-                addCourseUi(course.image,course.title,course.category,course.price);
-            })
+            checkByCategorie(categorieCourse_dom,search.value);
+        }
+    } else 
+    {
+        console.log("im at : " + categorieCourse_dom);
+        if(categorieCourse_dom == "all")
+        {
+            for(let i = 0;i<courses.length;i++) {
+                addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
+             }
+        } else 
+        {
+            checkByCategorie(categorieCourse_dom,search.value);
         }
     }
 });
+
+function checkByCategorie(categorie,search)
+{
+    dispo.style.visibility = "hidden";
+    if(search != "")
+    {
+        let categorieCourse = courses.filter(course => {
+            return course.category == categorie && course.title.toLocaleLowerCase().includes(search);
+        });
+        categorieCourse.forEach(course => {
+            addCourseUi(course.image,course.title,course.category,course.price);
+        })
+    } else 
+    {
+        let categorieCourse = courses.filter(course => {
+            return course.category == categorie;
+        });
+        categorieCourse.forEach(course => {
+            addCourseUi(course.image,course.title,course.category,course.price);
+        })
+    }
+}
+
 //clicking on some categories : 
 categories_.addEventListener('click',(e) => {
     categorieCourse_dom = e.target.textContent;
-    dispo.style.visibility = "hidden";
-    if(categorieCourse_dom != "all"){
-        if(search.value == "")
+    coursesMenu.textContent = "";
+    if(e.target.textContent != "all")
+       checkByCategorie(e.target.textContent,search.value);   
+     else 
+    {
+        if(search.value != "")
         {
-            if(price_change == 0.0)
-            {
-                coursesMenu.textContent = "";
-                let categorieCourse = courses.filter(course => {
-                    return course.category == categorieCourse_dom;
-                });
-                categorieCourse.forEach(course => {
-                    addCourseUi(course.image,course.title,course.category,course.price);
-                })
-            } else 
-            {
-                coursesMenu.textContent = "";
-                let categorieCourse = courses.filter(course => {
-                    return course.price <= price_change && course.category == categorieCourse_dom;
-                });
-                if(categorieCourse.length != 0)
-                {
-                    categorieCourse.forEach(course => {
-                        addCourseUi(course.image,course.title,course.category,course.price);
-                    })
-                } else {
-                    console.log("visibility");
-                    dispo.style.visibility = "visible";
-                    dispo.style.color = "red";
-                    dispo.textContent="Aucun produit dispo pour cette categorie de " + categorieCourse_dom;
-                }
-            }
+            let categorieCourse = courses.filter(course => {
+                return course.title.toLocaleLowerCase().includes(search.value);
+            });
+            categorieCourse.forEach(course => {
+                addCourseUi(course.image,course.title,course.category,course.price);
+            })
         } else 
         {
-            coursesMenu.textContent = "";
-            console.log("hna");
-            for(let i = 0;i<courses.length;i++) 
-            {
-                if(courses[i].title.toLocaleLowerCase().includes(search.value) && categorieCourse_dom == courses[i].category)
-                {
-                    addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
-                    console.log(courses[i].title);
-                }
-            }
+            courses.forEach(course => {
+                addCourseUi(course.image,course.title,course.category,course.price);
+            })
         }
-         //testing on search  : 
-    } else 
-    {
-        coursesMenu.textContent = "";
-        courses.forEach(course =>{
-            addCourseUi(course.image,course.title,course.category,course.price);
-        })
     }
 });
 
 //price changing : 
 price.addEventListener('change',() => {
     dispo.style.visibility = "hidden";
+    coursesMenu.textContent = "";
     document.getElementById("priceVal").textContent = "Value :  "+ price.value + " $";
     price_change = price.value;
-    if(categorieCourse_dom != "all")
+    if(search.value == "" && categorieCourse_dom == "all")
     {
-        console.log("hna cat");
         let priceCourse = courses.filter(course => {
-            return course.price <= parseFloat(price.value) && course.category == categorieCourse_dom;
+            return course.price <= parseFloat(price.value) ;
         });
-        coursesMenu.textContent = "";
-        if(priceCourse.length != 0)
-        {
-            priceCourse.forEach(course =>{
-                addCourseUi(course.image,course.title,course.category,course.price);
-            })
-        }
-        else 
-        {
-            console.log("visibility");
-            dispo.style.visibility = "visible";
-            dispo.style.color = "red";
-            dispo.textContent="Aucun produit dispo pour cette categorie de " + categorieCourse_dom;
-        }   
-    } else {
-        coursesMenu.textContent = "";
-        console.log(price.value);   
-        let priceCourse = courses.filter(course => {
-            return course.price <= parseFloat(price.value);
-        });
-        if(priceCourse.length != 0){
-            priceCourse.forEach(course =>{
-                addCourseUi(course.image,course.title,course.category,course.price);
-            })
-        } else {
-            //not showing data : 
-
-        }
+        priceCourse.forEach(course =>{
+            addCourseUi(course.image,course.title,course.category,course.price);
+        })
     }
 });
