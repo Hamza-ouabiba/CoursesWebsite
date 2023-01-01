@@ -164,7 +164,7 @@ t.forEach(categorie => {
 
 const searchCourse = (title) => {
     for(let i = 0;i<courses.length;i++) {
-        if(courses[i].title.toLocaleLowerCase().includes(title) ) {
+        if(courses[i].title.toLocaleLowerCase().includes(title) && courses[i].price <= parseFloat(price.value)) {
             addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
         }
     }
@@ -188,7 +188,10 @@ search.addEventListener('keyup',() =>{
         if(categorieCourse_dom == "all")
         {
             for(let i = 0;i<courses.length;i++) {
-                addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
+                if(courses[i].price <= parseFloat(price.value))
+                {
+                    addCourseUi(courses[i].image,courses[i].title,courses[i].category,courses[i].price);
+                }
              }
         } else 
         {
@@ -203,7 +206,7 @@ function checkByCategorie(categorie,search)
     if(search != "")
     {
         let categorieCourse = courses.filter(course => {
-            return course.category == categorie && course.title.toLocaleLowerCase().includes(search);
+            return course.category == categorie && course.title.toLocaleLowerCase().includes(search) && course.price <= parseFloat(price.value);
         });
         categorieCourse.forEach(course => {
             addCourseUi(course.image,course.title,course.category,course.price);
@@ -211,7 +214,7 @@ function checkByCategorie(categorie,search)
     } else 
     {
         let categorieCourse = courses.filter(course => {
-            return course.category == categorie;
+            return course.category == categorie && course.price <= parseFloat(price.value);
         });
         categorieCourse.forEach(course => {
             addCourseUi(course.image,course.title,course.category,course.price);
@@ -224,26 +227,36 @@ categories_.addEventListener('click',(e) => {
     categorieCourse_dom = e.target.textContent;
     coursesMenu.textContent = "";
     if(e.target.textContent != "all")
-       checkByCategorie(e.target.textContent,search.value);   
+    {
+        checkByCategorie(e.target.textContent,search.value);   
+    }
      else 
     {
         if(search.value != "")
         {
             let categorieCourse = courses.filter(course => {
-                return course.title.toLocaleLowerCase().includes(search.value);
+                return course.title.toLocaleLowerCase().includes(search.value) && course.price <= parseFloat(price.value);
             });
             categorieCourse.forEach(course => {
                 addCourseUi(course.image,course.title,course.category,course.price);
             })
         } else 
         {
-            courses.forEach(course => {
+            //here : 
+            let categorieCoursePrice = courses.filter(course => {
+                return course.price <= parseFloat(price.value);
+            })
+            categorieCoursePrice.forEach(course => {
                 addCourseUi(course.image,course.title,course.category,course.price);
             })
         }
     }
 });
 
+function checkPriceByCat()
+{
+
+}
 //price changing : 
 price.addEventListener('change',() => {
     dispo.style.visibility = "hidden";
@@ -258,5 +271,18 @@ price.addEventListener('change',() => {
         priceCourse.forEach(course =>{
             addCourseUi(course.image,course.title,course.category,course.price);
         })
-    }
+    } else if(search.value != "" && categorieCourse_dom == "all")
+    {
+        console.log("hna 2");
+        let priceCourse = courses.filter(course => {
+            return course.price <= parseFloat(price.value) && course.title.toLocaleLowerCase().includes(search.value.toLocaleLowerCase());
+        });
+        priceCourse.forEach(course =>{
+            addCourseUi(course.image,course.title,course.category,course.price);
+        })
+    } else if((search.value != "" && categorieCourse_dom != "all") || (search.value == "" && categorieCourse_dom != "all"))
+    {
+        console.log("hna");
+       checkByCategorie(categorieCourse_dom,search.value);   
+    } 
 });
