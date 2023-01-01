@@ -52,9 +52,12 @@ xhr.onload = function() {
              coursesObject = JSON.parse(xhr.responseText);
              let max = Math.max(...coursesObject.map(course => course.price));
             let min = Math.min(...coursesObject.map(course => course.price));
-            document.getElementById('priceVal').innerText ="value" + max+" $";
             price.max = max;
             price.min = min;
+            console.log("max = ",max);
+            document.getElementById('priceVal').innerText ="value " + max+" $";
+           
+            console.log(price.max);
             // process the data
             coursesObject.forEach(course => {
                 addCourseUi(course.image,course.title,course.category,course.price,course.courseId);
@@ -69,7 +72,7 @@ xhr.send();
 console.log("hna : "+ coursesObject);
 const searchCourse = (title) => {
         for(let i = 0;i<coursesObject.length;i++) {
-            if(coursesObject[i].title.toLocaleLowerCase().includes(title) ) {
+            if(coursesObject[i].title.toLocaleLowerCase().includes(title) && coursesObject[i].price <= parseFloat(price.value)) {
                 addCourseUi(coursesObject[i].image,coursesObject[i].title,coursesObject[i].category,coursesObject[i].price);
             }
         }
@@ -82,26 +85,37 @@ search.addEventListener('keyup',() =>{
         searchCourse(search.value.toLowerCase());
     else 
     {
+        console.log("hna filter ")
+        console.log(price.value)
         for(let i = 0;i<coursesObject.length;i++) 
+        {
+            if(coursesObject[i].price <= parseFloat(price.value)) {
                 addCourseUi(coursesObject[i].image,coursesObject[i].title,coursesObject[i].category,coursesObject[i].price);
+            }
+        }
     }
 });
 
 //price changing : 
 price.addEventListener('change',() => {
-    document.getElementById("priceVal").textContent = "Value :  "+ price.value + " $";
-    price_change = price.value;
     coursesMenu.textContent = "";
-    let priceCourse = coursesObject.filter(course => {
-        return course.price <= parseFloat(price.value);
-    });
-    if(priceCourse.length != 0){
-        console.log(priceCourse);
+    document.getElementById("priceVal").textContent = "Value :  "+ price.value + " $";
+    if(search.value == "")
+    {
+        let priceCourse = coursesObject.filter(course => {
+            return course.price <= parseFloat(price.value) ;
+        });
         priceCourse.forEach(course =>{
             addCourseUi(course.image,course.title,course.category,course.price);
         })
-    } else {
-        //not showing data : 
-
-    }
+    } else
+    {
+        console.log("hna 2");
+        let priceCourse = coursesObject.filter(course => {
+            return course.price <= parseFloat(price.value) && course.title.toLocaleLowerCase().includes(search.value);
+        });
+        priceCourse.forEach(course =>{
+            addCourseUi(course.image,course.title,course.category,course.price);
+        })
+    } 
 });

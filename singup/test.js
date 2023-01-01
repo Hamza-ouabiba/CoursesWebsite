@@ -4,9 +4,9 @@ var password = document.getElementById("pass");
 var email = document.getElementById("email");
 var form = document.querySelector('#m-form');
 var feedback = document.querySelector('.feedback');
-var patternUsername = /[a-zA-Z]{7,}/;
+var patternUsername = /[a-zA-Z0-9]{3,25}/;
 var patternEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-var patternPass = /[a-zA-Z0-9+]{8,}/;
+var patternPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
 const clearFields = () =>{
     username.style.border = "1px solid rgb(206, 206, 206)";
     email.style.border = "1px solid rgb(206, 206, 206)";
@@ -23,7 +23,7 @@ username.addEventListener('keyup',(e) => {
     if(!patternUsername.test(username.value)){
         username.style.border ="1px solid red";
         errorDiv.style.color = "red";
-        errorDiv.textContent = "username must contain in minimum 7 chars "
+        errorDiv.textContent = "username must contain in minimum 3 chars and max 25 chars"
     } else {
         username.style.border ="1px solid green";
         errorDiv.textContent = "";
@@ -48,7 +48,7 @@ password.addEventListener('keyup',(e) => {
     if(!patternPass.test(password.value)){
         password.style.border ="1px solid red";
         errorDiv.style.color = "red";
-        errorDiv.textContent = "password must contain in minimum 8 chars";
+        errorDiv.textContent = "Must contain at least 1 lowercase, 1 uppercase, 1 digit, and 1 special character (!@#$%^&*).";
     } else {
          password.style.border ="1px solid green";
          errorDiv.textContent = "";
@@ -99,8 +99,6 @@ form.addEventListener('submit',(e) => {
         // Send the FormData object as an AJAX request
         var xhr = new XMLHttpRequest();
         //clear fields:  
-        clearFields();
-        console.log("hhna");
         var xhr = new XMLHttpRequest();
         xhr.open('POST','http://localhost/MiniProjetV2/singup/signup.php');
         xhr.send(formData);
@@ -108,20 +106,19 @@ form.addEventListener('submit',(e) => {
             if (xhr.status === 200) {
                 // success*
                 console.log(xhr.responseText);
-                alert('Compte crée');
+                setTimeout(() => {
+                    feedback.textContent = "Compte crée avec succés";
+                     feedback.style.backgroundColor = "rgb(148, 238, 148)";
+                },1000);
+                feedback.textContent = "";
+                feedback.style.backgroundColor = "none";
+                  clearFields();
                 // process the data
             } else {
                 // error
                 alert('Compte non crée');
             }
         };
-        setTimeout(() => {
-             let p = document.createElement('p');
-             p.textContent = "Compte crée avec succés";
-             feedback.appendChild(p);
-             feedback.style.backgroundColor = "rgb(148, 238, 148)";
-        },2);
-        feedback.textContent = "";
-        feedback.style.backgroundColor = "none";
+        
     } 
 })

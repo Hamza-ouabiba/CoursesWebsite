@@ -10,9 +10,9 @@
     $user_id = $_SESSION['userId'];
     if(!$mysqli)
         die("connction failed " . mysqli_connect_error());
-    //check if the session variable has only one order if so then just keep the order id : 
-    //insert data to database : 
+
     
+    //check if the session variable has only one order if so then just keep the order id : 
     //inserting product to table product : 
     $sql = "select idCmd from commande where userid = $user_id and etat = 0";
     $result = mysqli_query($mysqli, $sql);
@@ -50,21 +50,35 @@
     $courseId = $obj->CourseId;
     // echo $_SESSION['idCmd'];
     // print($_SESSION['idCmd']);
-    //check if the user already bought to this user : 
-    $query = "select * from userclient join commande on userclient.userId = commande.userid join contient on commande.idCmd = contient.idCmd where contient.idCourse = $courseId and userclient.userId = $user_id";
-    $res = mysqli_query($mysqli, $query);
-    if(mysqli_num_rows($res) > 0)
-        echo "no";
-     else 
+    //check if the user already put this course in cart  :
+    
+    //----1: means the product exist in cart : ----
+    //----2: means the product is available to enroll : 
+    //----3: means the product exist in product list of user :    
+    $queryListe = "select * from listeproduit where userId = $user_id and courseId = $courseId";
+    $resListe = mysqli_query($mysqli, $queryListe);
+    if(mysqli_num_rows($resListe) <= 0)
     {
-        //insert course and command to contient table : 
-        $sqlCart = "INSERT INTO contient(idCmd,idCourse) values(?,?)";
-        $stmt = mysqli_prepare($mysqli,$sqlCart);
-        mysqli_stmt_bind_param($stmt,"ii",$cmd_id,$courseId);
-        $result = mysqli_stmt_execute($stmt);
-        //close connection : 
-        echo "yes";
-        // echo $cmd_id;
+        $cmdId = $_SESSION['idCmd'];
+        $queryContient = "select * from contient where idCmd = $cmdId and idCourse = $courseId";
+        $resContient = mysqli_query($mysqli, $queryContient);
+        if(mysqli_num_rows($resContient) > 0)
+        {
+            echo "product already in cart";
+        } else 
+        {
+            //insert course and command to contient table : 
+            $sqlCart = "INSERT INTO contient(idCmd,idCourse) values(?,?)";
+            $stmt = mysqli_prepare($mysqli,$sqlCart);
+            mysqli_stmt_bind_param($stmt,"ii",$cmd_id,$courseId);
+            $result = mysqli_stmt_execute($stmt);
+            //close connection :    
+            echo "Product added to cart";
+            // echo $cmd_id;
+        }
+    } else 
+    {
+        echo "product already exist in liste";  
     }
     mysqli_close($mysqli);
     

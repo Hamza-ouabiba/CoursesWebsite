@@ -24,7 +24,3 @@ $('#m-form').submit(function(event) {
 });
 });
 
-
-$('#signOut').click(function(event) {
-    event.preventDefault();
-})

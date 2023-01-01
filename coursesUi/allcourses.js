@@ -114,10 +114,7 @@ coursesMenu.addEventListener('click',(e) => {
             if (xhr.status === 200) {
                 // success*
                 console.log(xhr.responseText);
-                if(xhr.responseText == "yes")
-                    alert('Article Added to Cart :)');
-                else if(xhr.responseText == "no")
-                    alert("you have already bought this product check the My products section to view your course :)");
+                alert(xhr.responseText);
                 // process the data
             } else {
 
