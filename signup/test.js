@@ -100,7 +100,7 @@ form.addEventListener('submit',(e) => {
         var xhr = new XMLHttpRequest();
         //clear fields:  
         var xhr = new XMLHttpRequest();
-        xhr.open('POST','http://localhost/MiniProjetV2/singup/signup.php');
+        xhr.open('POST','http://localhost/MiniProjetV2/signup/signup.php');
         xhr.send(formData);
         xhr.onload = function() {
             if (xhr.status === 200) {
