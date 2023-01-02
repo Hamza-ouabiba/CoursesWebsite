@@ -9,7 +9,7 @@
         die("connction failed " . mysqli_connect_error());
     $user_id = $_SESSION['userId'];
     $sql = "select * from listeproduit join userclient on listeproduit.userId = userclient.userId join course on listeproduit.courseId = course.courseId where userclient.userId = 
-    $user_id";
+   $user_id";
     // Select all rows from the table
     $result = mysqli_query($mysqli, $sql);
     // Fetch the rows one by one
