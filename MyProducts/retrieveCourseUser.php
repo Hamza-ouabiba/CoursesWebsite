@@ -15,12 +15,13 @@
 
    if(mysqli_num_rows($result) > 0)
    {
+       
         while ($row = mysqli_fetch_assoc($result))
-        {
             $data[] = $row;
-        }
         $json_data = json_encode($data);
+       
         echo $json_data;        
+       
    } else echo "";
     //close connection : 
     mysqli_close($mysqli);
