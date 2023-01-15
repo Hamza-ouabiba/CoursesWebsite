@@ -12,8 +12,6 @@
         die("connction failed " . mysqli_connect_error());
 
     
-    //check if the session variable has only one order if so then just keep the order id : 
-    //inserting product to table product : 
     $sql = "select idCmd from commande where userid = $user_id and etat = 0";
     $result = mysqli_query($mysqli, $sql);
     // Fetch the rows one by one
@@ -22,7 +20,6 @@
         $row = $result->fetch_assoc();
         $cmd_id = $row['idCmd'];
         $_SESSION['idCmd'] = $cmd_id;
-        // echo "commande ".$cmd_id;
     } else 
     {
         $etat = 0;
@@ -72,7 +69,6 @@
             $stmt = mysqli_prepare($mysqli,$sqlCart);
             mysqli_stmt_bind_param($stmt,"ii",$cmd_id,$courseId);
             $result = mysqli_stmt_execute($stmt);
-            //close connection :    
             echo "Product added to cart";
             // echo $cmd_id;
         }
